@@ -1,0 +1,18 @@
+{
+  "name": "scrawdata",
+  "version": "1.0.0",
+  "description": "w3cplus 汇总文章技术",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node node_modules/nodemon/bin/nodemon.js --ignore padfbook app.js",
+    "w3c": "python3 w3cplus.py",
+    "zhangxinxu": "python3 zhangxinxu.py"
+  },
+  "author": "perfectyang",
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "express": "^4.16.4",
+    "express-art-template": "^1.0.1"
+  }
+}

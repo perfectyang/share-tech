@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .article {
+      width: 48%;
+    }
+  </style>
+</head>
+<body>
+     <h1>技术文章总共{{data.length}}条:</h1>
+     <div class="content">
+       {{each data}}
+          <p class="article">{{$index + 1}}.<a href="{{$value.link}}" target="_blank">{{$value.title}}</a></p>
+       {{/each}}
+     </div>
+
+</body>
+</html>
