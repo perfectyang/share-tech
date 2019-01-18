@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from requests.exceptions import RequestException
 from threading import Thread as multiprocessline
 
-
 class webScrawer:
     def __init__(self, urls, params = {'encoding': 'utf-8'}):
         self.urls = urls
@@ -33,5 +32,5 @@ class webScrawer:
         for t in result:
             t.join()
     def saveFile(self, name, content):
-        with open(name, 'w+') as f:
+        with open(name, 'w+', encoding='utf8') as f:
             f.write(str(content))
