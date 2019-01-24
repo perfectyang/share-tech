@@ -12,12 +12,24 @@ app.set('view options', {
 
 
 app.get('/', async(req, res) => {
+  // let data = await fs.readFileSync('json/blog2.json', 'utf8')
+  let data = await fs.readFileSync('json/article.json', 'utf8')
+  let json = JSON.parse(data)
+  res.render('index.html', {
+    data: json['list']
+  })
+})
+
+
+app.get('/blog', async(req, res) => {
+  // let data = await fs.readFileSync('json/blog2.json', 'utf8')
   let data = await fs.readFileSync('json/blog2.json', 'utf8')
   let json = JSON.parse(data)
   res.render('index.html', {
     data: json['list']
   })
 })
+
 
 
 app.listen(3000, () => console.log('app listening on port 3000!'))

@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from requests.exceptions import RequestException
 from threading import Thread as multiprocessline
+from fake_useragent import UserAgent
+ua = UserAgent()
 
 class webScrawer:
     def __init__(self, urls, params = {'encoding': 'utf-8'}):
@@ -11,7 +13,9 @@ class webScrawer:
 
     def crawContent(self, url):
         headers = {
-          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+          'Host': 'www.w3cplus.com',
+          'User-Agent': ua.random
+          # 'Cookie': 'has_js=1; Hm_lvt_177319b798978621f83845b12c86fa29=1547710407,1548296418,1548298301; Hm_lpvt_177319b798978621f83845b12c86fa29=1548299861'
         }
         try:
             response = requests.get(url, headers=headers)

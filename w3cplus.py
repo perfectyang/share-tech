@@ -1,7 +1,6 @@
-import os
+import os, json
 from webScrawer import webScrawer
 from threading import Thread as multiprocessline
-
 allInfo = []
 def parseHtml(html):
     allArticles = html.find_all(id='page')[0].select('.node-blog')
@@ -28,7 +27,7 @@ def moreProgress(allHtml):
 def main():
     urls = []
     allArticle = []
-    for n in range(0, 50):
+    for n in range(130, 140):
         curl = 'https://www.w3cplus.com/?page={}'.format(n)
         urls.append(curl)
     print('urls', urls)
@@ -37,7 +36,10 @@ def main():
     allHtml = webscrawer.backResult
     print('所有', allHtml)
     moreProgress(allHtml)
-    webscrawer.saveFile('public/w3cplus.js', allInfo)
+    datajson = {
+      'list': allInfo
+    }
+    webscrawer.saveFile('json/w3cplus11_{}.json'.format(len(allInfo)), json.dumps(datajson, ensure_ascii=False))
     print('总共数据:{}条'.format(len(allInfo)))
 
 main()
