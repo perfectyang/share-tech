@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+const request = require('request')
+const fs = require('fs')
+const path = require('path')
+const jsonUrl = path.join(__dirname, 'zh_wiki.json')
+const gbResult = JSON.parse(fs.readFileSync(jsonUrl, 'utf-8'))
+
+// 英文
+const englishTs = (txt) => {
+  return new Promise((resolve, reject) => {
+    request.get(encodeURI(`http://fanyi.youdao.com/openapi.do?keyfrom=node-fanyi&key=110811608&type=data&doctype=json&version=1.1&q=${txt}`), (error, resp, body) => {
+      if (resp.statusCode === 200) {
+        // console.log(body)
+        resolve(JSON.parse(body))
+      } else {
+        resolve(null)
+      }
+    })
+  })
+}
+
+// 繁体字
+const gbTs = (txt) => {
+  let splitText = txt.split('')
+  let backText = []
+  splitText.forEach(t => {
+    if (gbResult[t]) {
+      backText.push(gbResult[t])
+    } else {
+      backText.push(t)
+    }
+  })
+  return backText.join('')
+}
+
+const tsAll = async(txt) => {
+  let rs = await englishTs(txt)
+  let backJson = {
+    en: rs ? rs['translation'][0] : 'translation is failure',
+    gb: gbTs(txt)
+  }
+  console.log(backJson)
+}
+
+tsAll(process.argv[2])
+
