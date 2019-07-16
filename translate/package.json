@@ -1,14 +1,25 @@
 {
-  "name": "translate",
-  "version": "1.0.0",
-  "description": "",
+  "name": "ts",
+  "version": "0.0.1",
+  "description": "translate englist and gb",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "ts": "./ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "dev": "node ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/perfectyang/pytools"
+  },
+  "keywords": [
+    "front",
+    "ts",
+    "tools"
+  ],
+  "author": "perfectyang",
+  "license": "MIT",
   "devDependencies": {
     "request": "^2.88.0"
   }
